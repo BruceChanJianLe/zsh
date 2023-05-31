@@ -1,12 +1,18 @@
 #!/bin/sh
 
+# Basic auto/tab complete:
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+
+# Include hidden files.
+_comp_options+=(globdots)
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
-
-# Include hidden files.
-_comp_options+=(globdots)
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -17,6 +23,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Disable paste highlight
 zle_highlight=('paste:none')
 
-# beeping is annoying
+# Beeping is annoying
 unsetopt BEEP
+
+# Completion for aliases
+unsetopt complete_aliases
 
