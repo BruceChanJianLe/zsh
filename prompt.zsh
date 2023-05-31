@@ -20,7 +20,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats "%B%{$fg[magenta]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%}%b%{$fg[magenta]%})%{$reset_color%}"
+zstyle ':vcs_info:git:*' formats "%B%{$fg[magenta]%}(%{$fg[red]%}%m%u%c%{$fg[magenta]%}%b%{$fg[magenta]%})%{$reset_color%}"
 
 # Bash like prompt
 PROMPT="%B%{$fg[green]%}%n@%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
