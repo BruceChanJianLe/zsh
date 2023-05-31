@@ -40,3 +40,7 @@ Summary:
 - Global changes (for every shell session) go in one of the zshenv files
 - Put customizations for user-level Interactive shells in ~/.zshrc
   - This file can be synced or shared
+
+## Prerequisite
+
+Ensure that zsh and fzf are installed.
