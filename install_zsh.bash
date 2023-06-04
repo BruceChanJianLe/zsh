@@ -57,6 +57,10 @@ CURRENT_DIR="$(pwd)"
 # Install zsh
 sudo apt install zsh zsh-syntax-highlighting zsh-syntax-highlighting -y -qq
 
+# Create history dir
+mkdir $HOME/.cache/zsh
+touch $HOME/.cache/zsh/history
+
 # Install zap (zsh plugin manager)
 echo "Installing zap..."
 # Checks if neovim directory already exists
