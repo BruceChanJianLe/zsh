@@ -5,10 +5,12 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-  Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-r] [-d]
+  Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-r] [-s]
   Script description here.
   Available options:
   -h, --help          Print this help and exit
+  -a, --auto          Set true to auto select the last branch in the list (WARN) may not be a release branch
+  -s, --setdefault    Set zsh as default branch
 EOF
 exit
 }
@@ -34,11 +36,31 @@ die() {
 
 parse_params() {
   # default values of variables set from params
+  AUTO_SELECT="false"
+  SET_DEFAULT_SHELL="false"
   ZAP_DIR="$HOME/references/zap.git"
 
   while test $# -gt 0; do
     case $1 in
       -h | --help) usage ;;
+      -a | --auto)
+        shift
+        if [[ $1 == "true" || $1 == "false" ]]
+        then
+          AUTO_SELECT=$1
+        else
+          die "-a only accepts true or false."
+        fi
+        ;;
+      -s | --setdefault)
+        shift
+        if [[ $1 == "true" || $1 == "false" ]]
+        then
+          SET_DEFAULT_SHELL=$1
+        else
+          die "-s only accepts true or false."
+        fi
+        ;;
       -?*) die "Unknown option: $1" ;;
       *) break ;;
     esac
@@ -78,32 +100,61 @@ else
   git fetch
 fi
 
-# Checkout to master branch
-git worktree add master master
-cd master
+# Checkout/update master branch
+if [ ! -d master ]
+then
+  git worktree add master master
+  cd master
+else
+  cd master
+  git pull
+fi
 
-# Display all available branches
-echo "Available releases:"
-declare -a arr
-i=0
+if [[ $AUTO_SELECT == "false" ]]
+then
+  # Display all available branches
+  echo "Available releases:"
+  declare -a arr
+  i=0
 
-  # Make branches name into an array
-  branches=$(git for-each-ref refs  --format='%(refname)' | grep origin | cut -d/ -f4)
-  for branch in $branches
-  do
-    arr[$i]=$branch
-    let "i+=1"
-  done
+    # Make branches name into an array
+    branches=$(git for-each-ref refs  --format='%(refname)' | grep origin | cut -d/ -f4)
+    for branch in $branches
+    do
+      arr[$i]=$branch
+      let "i+=1"
+    done
 
-  # Loop through name array
-  let "i-=1"
-  for j in $(seq 0 $i)
-  do
-    echo $j")" ${arr[$j]}
-  done
+    # Loop through name array
+    let "i-=1"
+    for j in $(seq 0 $i)
+    do
+      echo $j")" ${arr[$j]}
+    done
 
-  # Obtain branch name
-  read -p "Release version to be used: " BRANCH
-  ./install.zsh --branch ${arr[$BRANCH]} --keep
+    # Obtain branch name
+    read -p "Release version to be used: " BRANCH
+    ./install.zsh --branch ${arr[$BRANCH]} --keep
+  else
+    declare -a arr
+    i=0
+
+    # Make branches name into an array
+    branches=$(git for-each-ref refs  --format='%(refname)' | grep origin | cut -d/ -f4)
+    for branch in $branches
+    do
+      arr[$i]=$branch
+      let "i+=1"
+    done
+    let "i-=1"
+
+    ./install.zsh --branch ${arr[$i]} --keep
+fi
+
+if [[ $SET_DEFAULT_SHELL == "true" ]]
+then
+  echo "Setting zsh as default shell..."
+  chsh -s (which zsh)
+fi
 
 echo -e $GREEN"Successfully installed zsh! Enjoy! :)"$NOFORMAT
