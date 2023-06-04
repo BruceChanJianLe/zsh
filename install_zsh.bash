@@ -80,8 +80,13 @@ CURRENT_DIR="$(pwd)"
 sudo apt install zsh zsh-syntax-highlighting zsh-syntax-highlighting -y -qq
 
 # Create history dir
-mkdir $HOME/.cache/zsh
-touch $HOME/.cache/zsh/history
+if [ ! -d "$HOME/.cache/zsh" ]
+then
+  mkdir $HOME/.cache/zsh
+  touch $HOME/.cache/zsh/history
+else
+  touch $HOME/.cache/zsh/history
+fi
 
 # Install zap (zsh plugin manager)
 echo "Installing zap..."
