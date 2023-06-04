@@ -108,7 +108,9 @@ fi
 # Checkout/update master branch
 if [ ! -d master ]
 then
-  git worktree add master master cd master else
+  git worktree add master master
+  cd master
+else
   cd master
   git pull
 fi
