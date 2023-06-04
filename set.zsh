@@ -29,3 +29,6 @@ unsetopt BEEP
 # Completion for aliases
 unsetopt complete_aliases
 
+# Insert completion on first tab even if ambiguous
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _prefix
+setopt menu_complete
