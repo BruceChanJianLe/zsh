@@ -112,7 +112,7 @@ then
   cd master
 else
   cd master
-  git pull
+  git pull origin master
 fi
 
 if [[ $AUTO_SELECT == "false" ]]
