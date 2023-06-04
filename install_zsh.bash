@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env bash
 # This script will install zsh and zap
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
@@ -33,12 +33,6 @@ die() {
 }
 
 parse_params() {
-  # default values of variables set from params
-  AUTO_SELECT="false"
-  BRANCH=""
-  DEPS="true"
-  NEOVIM_DIR="$HOME/references/neovim.git"
-
   while test $# -gt 0; do
     case $1 in
       -h | --help) usage ;;
