@@ -33,6 +33,9 @@ die() {
 }
 
 parse_params() {
+  # default values of variables set from params
+  ZAP_DIR="$HOME/references/zap.git"
+
   while test $# -gt 0; do
     case $1 in
       -h | --help) usage ;;
@@ -56,7 +59,47 @@ sudo apt install zsh zsh-syntax-highlighting zsh-syntax-highlighting -y -qq
 
 # Install zap (zsh plugin manager)
 echo "Installing zap..."
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+# Checks if neovim directory already exists
+if [ ! -d "$ZAP_DIR" ]
+then
+  mkdir -p $HOME/references
+  cd $HOME/references
+  git clone --bare https://github.com/zap-zsh/zap.git
+  cd $ZAP_DIR
+  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+  git fetch
+else
+  cd $ZAP_DIR
+  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+  git fetch
+fi
+
+# Checkout to master branch
+git worktree add master master
+cd master
+
+# Display all available branches
+echo "Available releases:"
+declare -a arr
+i=0
+
+  # Make branches name into an array
+  branches=$(git for-each-ref refs  --format='%(refname)' | grep origin | cut -d/ -f4)
+  for branch in $branches
+  do
+    arr[$i]=$branch
+    let "i+=1"
+  done
+
+  # Loop through name array
+  let "i-=1"
+  for j in $(seq 0 $i)
+  do
+    echo $j")" ${arr[$j]}
+  done
+
+  # Obtain branch name
+  read -p "Release version to be used: " BRANCH
+  ./install.zsh --branch ${arr[$BRANCH]} --keep
 
 echo -e $GREEN"Successfully installed zsh! Enjoy! :)"$NOFORMAT
-
