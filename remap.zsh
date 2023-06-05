@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Issues with missing default bindkey
+source default_bindkeys.zsh
+
 # Get current prompt text
 # Can use this plugin in the future https://github.com/guillaumeboehm/zsh-copybuffer
 # get_prompt_text() {
