@@ -17,6 +17,5 @@ plug "brucechanjianle/fzf-file-source"
 # plug "brucechanjianle/zsh-vim"
 
 # Local plugin setup
-plug $ZDOTDIR/remap.zsh
 plug $ZDOTDIR/zsh-autosuggestions.zsh
 plug $ZDOTDIR/fzf-tab.zsh
