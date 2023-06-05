@@ -44,3 +44,13 @@ Summary:
 ## Prerequisite
 
 Ensure that zsh and fzf are installed.
+
+## Wildcard
+
+As zsh takes wildcard differently from bash, use the following when you want zsh to pass the wildcard to the command instead of expanding it.
+
+```sh
+sudo apt install network-manager-pptp\*
+```
+
+ref: https://askubuntu.com/questions/335210/apt-get-wildcard-with-zsh
