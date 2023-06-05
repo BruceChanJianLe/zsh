@@ -13,6 +13,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "brucechanjianle/fzf-tab"
 plug "brucechanjianle/zsh-copybuffer"
+plug "brucechanjianle/fzf-file-source"
 # plug "zap-zsh/vim"
 
 # Local plugin setup

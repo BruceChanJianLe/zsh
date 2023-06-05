@@ -10,7 +10,7 @@ compinit
 _comp_options+=(globdots)
 
 # Vim style menu select
-# ref: https://thevaluable.dev/zsh-install-configure-mouseless/
+# ref: https://thevaluable.dev/zsh-install-configure-mouselessk
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -43,5 +43,7 @@ unsetopt complete_aliases
 # Display the completion menu after two use of the `TAB` key.
 setopt AUTO_MENU
 
+# Define completers
+zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
