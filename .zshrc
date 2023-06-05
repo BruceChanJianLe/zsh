@@ -1,11 +1,10 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-export ZSHDIR=$HOME/.config/zsh
 # Local setup
-plug $ZSHDIR/set.zsh
-plug $ZSHDIR/prompt.zsh
-plug $ZSHDIR/aliases.zsh
+plug $ZDOTDIR/set.zsh
+plug $ZDOTDIR/prompt.zsh
+plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
 
 # Plugin list
@@ -14,9 +13,9 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "brucechanjianle/fzf-tab"
 plug "brucechanjianle/zsh-copybuffer"
 plug "brucechanjianle/fzf-file-source"
-# plug "zap-zsh/vim"
+plug "brucechanjianle/zsh-vim"
 
 # Local plugin setup
-plug $ZSHDIR/remap.zsh
-plug $ZSHDIR/zsh-autosuggestions.zsh
-plug $ZSHDIR/fzf-tab.zsh
+plug $ZDOTDIR/remap.zsh
+plug $ZDOTDIR/zsh-autosuggestions.zsh
+plug $ZDOTDIR/fzf-tab.zsh
