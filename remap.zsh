@@ -3,6 +3,16 @@
 # Issues with missing default bindkey
 source $ZDOTDIR/default_bindkeys.zsh
 
+# Vim style menu select
+# ref: https://thevaluable.dev/zsh-install-configure-mouselessk
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^y' accept-line
+bindkey -M menuselect '^l' accept-line
+bindkey -M menuselect '^e' send-break
+
 # Get current prompt text
 # Can use this plugin in the future https://github.com/guillaumeboehm/zsh-copybuffer
 # get_prompt_text() {
