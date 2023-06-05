@@ -13,7 +13,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "brucechanjianle/fzf-tab"
 plug "brucechanjianle/zsh-copybuffer"
 plug "brucechanjianle/fzf-file-source"
-plug "brucechanjianle/zsh-vim"
+# plug "brucechanjianle/zsh-vim"
 
 # Local plugin setup
 plug $ZDOTDIR/remap.zsh
