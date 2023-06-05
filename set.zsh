@@ -10,6 +10,7 @@ compinit
 _comp_options+=(globdots)
 
 # Vim style menu select
+# ref: https://thevaluable.dev/zsh-install-configure-mouseless/
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
