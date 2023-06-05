@@ -13,3 +13,21 @@
 # zle -N get_prompt_text
 #
 # bindkey '^g' get_prompt_text
+
+# FZF
+# bindkey '^R' fzf-history-widget
+
+
+# ./ for executables
+# function dotcomplete() {
+#   if [[ $BUFFER =~ ^'\.'$ ]]; then
+#     BUFFER='./'
+#     CURSOR=2
+#     zle list-choices
+#   else
+#     zle expand-or-complete
+#   fi
+# }
+#
+# bindkey '^I' dotcomplete
+# zle -N dotcomplete

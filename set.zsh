@@ -9,6 +9,16 @@ compinit
 # Include hidden files.
 _comp_options+=(globdots)
 
+# Vim style menu select
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^y' accept-line
+bindkey -M menuselect '^l' accept-line
+bindkey -M menuselect '^e' send-break
+
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
@@ -29,6 +39,8 @@ unsetopt BEEP
 # Completion for aliases
 unsetopt complete_aliases
 
-# Insert completion on first tab even if ambiguous
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate _prefix
-setopt menu_complete
+# Display the completion menu after two use of the `TAB` key.
+setopt AUTO_MENU
+
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
