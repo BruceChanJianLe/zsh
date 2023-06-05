@@ -3,6 +3,7 @@
 
 # Local setup
 plug $ZDOTDIR/set.zsh
+plug $ZDOTDIR/remap.zsh
 plug $ZDOTDIR/prompt.zsh
 plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
