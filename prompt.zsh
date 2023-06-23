@@ -11,7 +11,7 @@ setopt prompt_subst
 
 
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-# 
+# https://stackoverflow.com/questions/49744179/zsh-vcs-info-how-to-indicate-if-there-are-untracked-files-in-git
 +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
         git status --porcelain | grep '??' &> /dev/null ; then
