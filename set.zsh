@@ -14,11 +14,15 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-   [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-       source "$BASE16_SHELL/profile_helper.sh"
+# How to not source base16
+# TERMINAL=$(basename "/"$(ps -o cmd -f -p $(cat /proc/$(echo $$)/stat | cut -d \  -f 4) | tail -1 | sed 's/ .*$//'))
+# if [[ ! "$TERMINAL" == "python" ]]; then
+  # Base16 Shell
+  BASE16_SHELL="$HOME/.config/base16-shell/"
+  [ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+    source "$BASE16_SHELL/profile_helper.sh"
+# fi
 
 # Disable paste highlight
 zle_highlight=('paste:none')
