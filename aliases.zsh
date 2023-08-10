@@ -11,5 +11,5 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Directory
-alias -g ...='../..'
-alias -g ....='../../..'
+# alias -g ...='../..'
+# alias -g ....='../../..'
