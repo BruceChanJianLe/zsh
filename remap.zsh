@@ -12,6 +12,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '^y' accept-line
 bindkey -M menuselect '^l' accept-line
 bindkey -M menuselect '^e' send-break
+bindkey -s '^f' "tmux-sessionizer\n"
 
 # Get current prompt text
 # Can use this plugin in the future https://github.com/guillaumeboehm/zsh-copybuffer
