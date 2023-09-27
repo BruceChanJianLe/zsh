@@ -38,7 +38,7 @@ parse_params() {
   # default values of variables set from params
   AUTO_SELECT="false"
   SET_DEFAULT_SHELL="false"
-  ZAP_DIR="$HOME/references/zap.git"
+  ZAP_DIR="$HOME/reference/zap.git"
 
   while test $# -gt 0; do
     case $1 in
@@ -93,8 +93,8 @@ echo "Installing zap..."
 # Checks if neovim directory already exists
 if [ ! -d "$ZAP_DIR" ]
 then
-  mkdir -p $HOME/references
-  cd $HOME/references
+  mkdir -p $HOME/reference
+  cd $HOME/reference
   git clone --bare https://github.com/zap-zsh/zap.git
   cd $ZAP_DIR
   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
