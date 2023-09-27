@@ -53,4 +53,16 @@ As zsh takes wildcard differently from bash, use the following when you want zsh
 sudo apt install network-manager-pptp\*
 ```
 
+## Issues
+
+Some known issues with git bare repos, starting from zsh version 5.8.
+zsh will output undesirable `fatal: this operation must be run in a work tree`.
+To resolve this, please edit the file in this path.
+```
+sudo -e vi /usr/share/zsh/functions/VCS_Info/Backends/VCS_INFO_get_data_git
+# Edit line: 141
+gitbase=$( ${vcs_comm[cmd]} rev-parse --show-toplevel 2> /dev/null )
+```
+Or follow this link: https://github.com/spaceship-prompt/spaceship-prompt/discussions/1003
+
 ref: https://askubuntu.com/questions/335210/apt-get-wildcard-with-zsh
