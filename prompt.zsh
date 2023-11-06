@@ -23,6 +23,14 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats "%B%{$fg[magenta]%}(%{$fg[red]%}%m%u%c%{$fg[magenta]%}%b%{$fg[magenta]%})%{$reset_color%}"
 
 # Bash like prompt
-PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}U20🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+if [ "$(lsb_release -rs)" = "18.04" ]; then
+  PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}U18🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+elif [ "$(lsb_release -rs)" = "20.04" ]; then 
+  PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}U20🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+else
+  # UU for undefine
+  PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}UU🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+fi
+
 PROMPT+="\$vcs_info_msg_0_%# "
 RPROMPT=%T
