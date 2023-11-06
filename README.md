@@ -55,6 +55,7 @@ sudo apt install network-manager-pptp\*
 
 ## Issues
 
+1. Git worktree error
 Some known issues with git bare repos, starting from zsh version 5.8.
 zsh will output undesirable `fatal: this operation must be run in a work tree`.
 To resolve this, please edit the file in this path.
@@ -66,3 +67,12 @@ gitbase=$( ${vcs_comm[cmd]} rev-parse --show-toplevel 2> /dev/null )
 Or follow this link: https://github.com/spaceship-prompt/spaceship-prompt/discussions/1003
 
 ref: https://askubuntu.com/questions/335210/apt-get-wildcard-with-zsh
+
+2. Missing Custom script
+This sometimes can happen inside of docker container or ssh client after moving over to zsh.
+We just need to update the PATH variable in the env.
+```bash
+export PATH=$HOME/.local/bin:$PATH
+```
+
+ref: https://stackoverflow.com/questions/62251500/zsh-can-neither-find-nor-execute-custom-user-scripts-in-bin-although-they-are
