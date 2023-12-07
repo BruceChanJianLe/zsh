@@ -77,7 +77,7 @@ setup_colors
 CURRENT_DIR="$(pwd)"
 
 # Install zsh
-sudo apt install zsh zsh-syntax-highlighting zsh-syntax-highlighting -y -qq
+sudo apt install zsh zsh-syntax-highlighting -y -qq
 
 # Create history dir
 if [ ! -d "$HOME/.cache/zsh" ]
@@ -90,7 +90,7 @@ fi
 
 # Install zap (zsh plugin manager)
 echo "Installing zap..."
-# Checks if neovim directory already exists
+# Checks if zap directory already exists
 if [ ! -d "$ZAP_DIR" ]
 then
   mkdir -p $HOME/reference
@@ -159,7 +159,7 @@ fi
 if [[ $SET_DEFAULT_SHELL == "true" ]]
 then
   echo "Setting zsh as default shell..."
-  chsh -s $(which zsh)
+  sudo chsh -s $(which zsh)
 fi
 
 echo -e $GREEN"Successfully installed zsh! Enjoy! :)"$NOFORMAT
