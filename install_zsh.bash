@@ -153,7 +153,9 @@ then
     done
     let "i-=1"
 
-    ./install.zsh --branch ${arr[$i]} --keep
+    if [[ ! -d "$ZAP_DIR" ]]; then
+      ./install.zsh --branch ${arr[$i]} --keep
+    fi
 fi
 
 if [[ $SET_DEFAULT_SHELL == "true" ]]
