@@ -1,6 +1,8 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
+# zmodload zsh/zprof # Uncomment for profiling
+
 # Local setup
 plug $ZDOTDIR/set.zsh
 plug $ZDOTDIR/remap.zsh
@@ -20,3 +22,5 @@ plug "brucechanjianle/fzf-file-source"
 # Local plugin setup
 plug $ZDOTDIR/zsh-autosuggestions.zsh
 plug $ZDOTDIR/fzf-tab.zsh
+
+# zprof # Uncomment for profiling
