@@ -4,7 +4,12 @@
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+
+for dump in $HOME/.zcompdump(N.mh+24); do
+  compinit
+  touch compinit
+done
+compinit -C
 
 # Include hidden files.
 _comp_options+=(globdots)

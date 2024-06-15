@@ -56,11 +56,12 @@ sudo apt install network-manager-pptp\*
 ## Issues
 
 1. Git worktree error
+
 Some known issues with git bare repos, starting from zsh version 5.8.
 zsh will output undesirable `fatal: this operation must be run in a work tree`.
 To resolve this, please edit the file in this path.
 ```
-sudo -e vi /usr/share/zsh/functions/VCS_Info/Backends/VCS_INFO_get_data_git
+sudoedit /usr/share/zsh/functions/VCS_Info/Backends/VCS_INFO_get_data_git
 # Edit line: 141
 gitbase=$( ${vcs_comm[cmd]} rev-parse --show-toplevel 2> /dev/null )
 ```
@@ -69,10 +70,32 @@ Or follow this link: https://github.com/spaceship-prompt/spaceship-prompt/discus
 ref: https://askubuntu.com/questions/335210/apt-get-wildcard-with-zsh
 
 2. Missing Custom script
+
 This sometimes can happen inside of docker container or ssh client after moving over to zsh.
 We just need to update the PATH variable in the env.
 ```bash
 export PATH=$HOME/.local/bin:$PATH
 ```
+
+3. Slow startup time
+
+The startup time of bash is around 0.02s, and my zsh is around 0.28s before the hack.
+This happens because of the `compinit` which is not needed for every time.
+You can check you zsh startup time with the below command.
+```bash
+for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
+```
+
+The hack to lightning speed!
+```bash
+for dump in $HOME/.zcompdump(N.mh+24); do
+  compinit
+  touch compinit
+done
+compinit -C
+```
+Only run compinit when the zcompdump is older than a day, of course, give it
+a nice little touch once you run compinit to set the time.
+Startup is now amazingly 0.02s!
 
 ref: https://stackoverflow.com/questions/62251500/zsh-can-neither-find-nor-execute-custom-user-scripts-in-bin-although-they-are

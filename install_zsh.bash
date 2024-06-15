@@ -38,7 +38,7 @@ parse_params() {
   # default values of variables set from params
   AUTO_SELECT="false"
   SET_DEFAULT_SHELL="false"
-  ZAP_DIR="$HOME/reference/zap.git"
+  ZAP_REPO_DIR="$HOME/reference/zap.git"
 
   while test $# -gt 0; do
     case $1 in
@@ -91,16 +91,16 @@ fi
 # Install zap (zsh plugin manager)
 echo "Installing zap..."
 # Checks if zap directory already exists
-if [ ! -d "$ZAP_DIR" ]
+if [ ! -d "$ZAP_REPO_DIR" ]
 then
   mkdir -p $HOME/reference
   cd $HOME/reference
   git clone --bare https://github.com/zap-zsh/zap.git
-  cd $ZAP_DIR
+  cd $ZAP_REPO_DIR
   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
   git fetch
 else
-  cd $ZAP_DIR
+  cd $ZAP_REPO_DIR
   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
   git fetch
 fi
@@ -153,7 +153,9 @@ then
     done
     let "i-=1"
 
-    ./install.zsh --branch ${arr[$i]} --keep
+    if [[ ! -d "$ZAP_DIR" ]]; then
+      ./install.zsh --branch ${arr[$i]} --keep
+    fi
 fi
 
 if [[ $SET_DEFAULT_SHELL == "true" ]]
