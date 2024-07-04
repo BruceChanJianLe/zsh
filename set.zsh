@@ -5,9 +5,9 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
-for dump in $HOME/.zcompdump(N.mh+24); do
+for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
   compinit
-  touch $HOME/.zcompdump
+  touch $ZDOTDIR/.zcompdump
 done
 compinit -C
 
