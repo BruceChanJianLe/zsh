@@ -7,7 +7,7 @@ zmodload zsh/complist
 
 for dump in $HOME/.zcompdump(N.mh+24); do
   compinit
-  touch compinit
+  touch $HOME/.zcompdump
 done
 compinit -C
 
