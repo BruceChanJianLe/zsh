@@ -9,7 +9,6 @@ plug $ZDOTDIR/remap.zsh
 plug $ZDOTDIR/prompt.zsh
 plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
-plug $ZDOTDIR/miniconda.zsh
 
 # Plugin list
 plug "zsh-users/zsh-autosuggestions"
@@ -17,6 +16,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "brucechanjianle/fzf-tab"
 plug "brucechanjianle/zsh-copybuffer"
 plug "brucechanjianle/fzf-file-source"
+plug "Tarrasch/zsh-autoenv"
 # plug "brucechanjianle/zsh-vim"
 
 # Local plugin setup
