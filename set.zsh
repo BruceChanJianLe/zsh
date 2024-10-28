@@ -27,6 +27,7 @@ HISTFILE=~/.cache/zsh/history
   [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
     source "$BASE16_SHELL/profile_helper.sh"
+  export BASE16_THEME=gruvbox-dark-hard
 # fi
 
 # Disable paste highlight
