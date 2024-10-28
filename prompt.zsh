@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+export IN_DOCKER=1
+
 autoload -Uz vcs_info
 autoload -U colors && colors
 
@@ -23,12 +25,25 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats "%B%{$fg[magenta]%}(%{$fg[red]%}%m%u%c%{$fg[magenta]%}%b%{$fg[magenta]%})%{$reset_color%}"
 
 # Bash like prompt
+PROMPT="%B%{$fg[green]%}%n"
+
+# Get Ubuntu Version
 if [ -x "$(command -v lsb_release)" ]; then
   ubuntu_version=$(echo "$(lsb_release -rs) / 1" | bc)
-  PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}U"$ubuntu_version"🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
-else
-  PROMPT="%B%{$fg[green]%}%n%{$fg[cyan]%}UU🐳%{$fg[green]%}%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+  PROMPT+="%{$fg[cyan]%}U"$ubuntu_version
 fi
+
+# Show docker
+if [[ -n "$IN_DOCKER" && "$IN_DOCKER" == 1 ]]; then
+  PROMPT+=🐳
+fi
+
+# Show nix
+if [[ -n "$IN_NIX_SHELL" && "$IN_NIX_SHELL" != "pure" ]]; then
+  PROMPT+=❄️
+fi
+
+PROMPT+="%{$fg[green]%}@%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
 
 PROMPT+="\$vcs_info_msg_0_%# "
 RPROMPT=%T
