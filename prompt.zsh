@@ -23,6 +23,25 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats "%B%{$fg[magenta]%}(%{$fg[red]%}%m%u%c%{$fg[magenta]%}%b%{$fg[magenta]%})%{$reset_color%}"
 
 # Bash like prompt
-PROMPT="%B%{$fg[green]%}%n@%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+PROMPT="%B%{$fg[green]%}%n"
+
+# Get Ubuntu Version
+if [ -x "$(command -v lsb_release)" ]; then
+  ubuntu_version=$(echo "$(lsb_release -rs) / 1" | bc)
+  PROMPT+="%{$fg[cyan]%}U"$ubuntu_version
+fi
+
+# Show docker
+if [[ -n "$IN_DOCKER" && "$IN_NIX_SHELL" != "1" ]]; then
+  PROMPT+=🐳
+fi
+
+# Show nix
+if [[ -n "$IN_NIX_SHELL" && "$IN_NIX_SHELL" != "pure" ]]; then
+  PROMPT+=❄️
+fi
+
+PROMPT+="%{$fg[green]%}@%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
+
 PROMPT+="\$vcs_info_msg_0_%# "
 RPROMPT=%T
