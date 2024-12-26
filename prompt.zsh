@@ -32,7 +32,7 @@ if [ -x "$(command -v lsb_release)" ]; then
 fi
 
 # Show docker
-if [[ -n "$IN_DOCKER" && "$IN_NIX_SHELL" != "1" ]]; then
+if [[ -n "$IN_DOCKER" && "$IN_DOCKER" == "1" ]]; then
   PROMPT+=🐳
 fi
 
