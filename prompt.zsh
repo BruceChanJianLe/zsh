@@ -31,6 +31,11 @@ if [ -x "$(command -v lsb_release)" ]; then
   PROMPT+="%{$fg[cyan]%}U"$ubuntu_version
 fi
 
+# Show podman
+if [[ -n "$IN_PODMAN" && "$IN_PODMAN" == "1" ]]; then
+  PROMPT+=🦭
+fi
+
 # Show docker
 if [[ -n "$IN_DOCKER" && "$IN_DOCKER" == "1" ]]; then
   PROMPT+=🐳
