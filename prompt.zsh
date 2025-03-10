@@ -28,7 +28,11 @@ PROMPT="%B%{$fg[green]%}%n"
 # Get Ubuntu Version
 if [ -x "$(command -v lsb_release)" ]; then
   ubuntu_version=$(echo "$(lsb_release -rs) / 1" | bc)
-  PROMPT+="%{$fg[cyan]%}U"$ubuntu_version
+  if [[ $ubuntu_version == 0 ]]; then
+    PROMPT+="%{$fg[cyan]%}"󰣇
+  else
+    PROMPT+="%{$fg[cyan]%}U"$ubuntu_version
+  fi
 fi
 
 # Show podman
