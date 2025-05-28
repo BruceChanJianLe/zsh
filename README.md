@@ -11,7 +11,7 @@ git clone https://github.com/zap-zsh/zap # Step1
 ## Setting Default Shell
 
 ```
-chsh -s $(which zsh)
+chsh -s $(which zsh) $USER
 ```
 
 ## Create History File

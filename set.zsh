@@ -27,6 +27,8 @@ HISTFILE=~/.cache/zsh/history
   [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
     source "$BASE16_SHELL/profile_helper.sh"
+  base16_gruvbox-dark-medium
+  # export BASE16_THEME=gruvbox-dark-medium
 # fi
 
 # Disable paste highlight
@@ -45,3 +47,5 @@ setopt AUTO_MENU
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+# Beautiful colorings for gtest :D
+export GTEST_COLOR=1
