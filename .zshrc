@@ -24,3 +24,10 @@ plug $ZDOTDIR/zsh-autosuggestions.zsh
 plug $ZDOTDIR/fzf-tab.zsh
 
 # zprof # Uncomment for profiling
+
+# ohtoware
+export CC="/usr/lib/ccache/gcc"
+export CXX="/usr/lib/ccache/g++"
+export CCACHE_DIR="$HOME/.cache/ccache/"
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
