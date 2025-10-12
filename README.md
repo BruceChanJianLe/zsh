@@ -90,7 +90,7 @@ The hack to lightning speed!
 ```bash
 for dump in $HOME/.zcompdump(N.mh+24); do
   compinit
-  touch compinit
+  touch $HOME/.zcompdump
 done
 compinit -C
 ```
