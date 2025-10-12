@@ -17,7 +17,6 @@ plug "brucechanjianle/fzf-tab"
 plug "brucechanjianle/zsh-copybuffer"
 plug "brucechanjianle/fzf-file-source"
 plug "Tarrasch/zsh-autoenv"
-plug "brucechanjianle/nix-zsh-completions"
 # plug "brucechanjianle/zsh-vim"
 
 # Local plugin setup
