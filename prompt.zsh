@@ -50,7 +50,17 @@ if [[ -n "$IN_NIX_SHELL" && "$IN_NIX_SHELL" != "pure" ]]; then
   PROMPT+=❄️
 fi
 
+# Show pixi (part 1)
+if [[ -n "$PIXI_IN_SHELL" && "$PIXI_IN_SHELL" == "1" ]]; then
+  PROMPT+=🤖
+fi
+
 PROMPT+="%{$fg[green]%}@%m%{$reset_color%}:%B%{$fg[blue]%}%~%{$reset_color%}"
 
 PROMPT+="\$vcs_info_msg_0_%# "
 RPROMPT=%T
+
+# Show pixi (part 2)
+if [[ -n "$IN_PIXI" && "$IN_PIXI" == "1" ]]; then
+  PROMPT="%B%{$fg[yellow]%}${CONDA_DEFAULT_ENV:+($CONDA_DEFAULT_ENV)}"$PROMPT
+fi
