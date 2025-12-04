@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+#
 bindkey "^A" beginning-of-line
 bindkey "^B" backward-char
 bindkey "^D" delete-char-or-list

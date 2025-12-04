@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Issues with missing default bindkey
 source $ZDOTDIR/default_bindkeys.zsh

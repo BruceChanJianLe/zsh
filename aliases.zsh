@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # This script stores aliases that are frequently used.
 
 # Common
