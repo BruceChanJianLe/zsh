@@ -9,8 +9,8 @@ plug $ZDOTDIR/remap.zsh
 plug $ZDOTDIR/prompt.zsh
 plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
-# plug $ZDOTDIR/miniconda.zsh
-# plug $ZDOTDIR/micromamba.zsh
+plug $ZDOTDIR/miniconda.zsh
+plug $ZDOTDIR/micromamba.zsh
 
 # Plugin list
 plug "zsh-users/zsh-autosuggestions"
