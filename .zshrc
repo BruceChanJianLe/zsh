@@ -11,6 +11,7 @@ plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
 plug $ZDOTDIR/miniconda.zsh
 plug $ZDOTDIR/micromamba.zsh
+plug $ZDOTDIR/pixi.zsh
 
 # Plugin list
 plug "zsh-users/zsh-autosuggestions"
