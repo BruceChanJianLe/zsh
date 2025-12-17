@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # This script enables micromamba
 # Please use it along with nix https://github.com/brucechanjianle/micromamba
 
