@@ -161,7 +161,7 @@ fi
 if [[ $SET_DEFAULT_SHELL == "true" ]]
 then
   echo "Setting zsh as default shell..."
-  sudo chsh -s $(which zsh)
+  chsh -s $(which zsh)
 fi
 
 echo -e $GREEN"Successfully installed zsh! Enjoy! :)"$NOFORMAT
