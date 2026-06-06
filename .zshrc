@@ -9,7 +9,6 @@ plug $ZDOTDIR/remap.zsh
 plug $ZDOTDIR/prompt.zsh
 plug $ZDOTDIR/aliases.zsh
 plug $HOME/.bash_aliases
-plug $ZDOTDIR/auto-completion.zsh
 # plug $ZDOTDIR/miniconda.zsh
 # plug $ZDOTDIR/micromamba.zsh
 # plug $ZDOTDIR/pixi.zsh
@@ -35,3 +34,6 @@ export CXX="/usr/lib/ccache/g++"
 export CCACHE_DIR="$HOME/.cache/ccache/"
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# Auto completion
+plug $ZDOTDIR/auto-completion.zsh
