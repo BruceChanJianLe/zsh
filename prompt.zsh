@@ -35,6 +35,11 @@ if [ -x "$(command -v lsb_release)" ]; then
   fi
 fi
 
+# Show redhat if in openshift
+if [[ -n "$KUBERNETES_SERVICE_HOST" || -n "$KUBERNETES_SERVICE_PORT" ]]; then
+  PROMPT+=
+fi
+
 # Show podman
 if [[ -n "$IN_PODMAN" && "$IN_PODMAN" == "1" ]]; then
   PROMPT+=🦭
