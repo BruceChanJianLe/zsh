@@ -32,5 +32,6 @@ fi
 
 # Enables openshift(oc) tab completion if exist
 if command -v oc >/dev/null 2>&1; then
-  source <(oc completion zsh)
+  alias occ='source <(oc completion zsh)'
+  # source <(oc completion zsh)
 fi
