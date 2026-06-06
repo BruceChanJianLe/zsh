@@ -29,3 +29,8 @@ fi
 if command -v pixi >/dev/null 2>&1; then
   eval "$(pixi completion --shell zsh)"
 fi
+
+# Enables openshift(oc) tab completion if exist
+if command -v oc >/dev/null 2>&1; then
+  source <(oc completion zsh)
+fi
