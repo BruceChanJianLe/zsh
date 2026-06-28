@@ -25,6 +25,11 @@ if [ -x "$MAMBA_EXE" ]; then
   # <<< mamba initialize <<<
 fi
 
+# Enables pixi if exist
+if [ -d "/home/developer/.pixi/bin" ]; then
+    export PATH="/home/developer/.pixi/bin:$PATH"
+fi
+
 # Enables pixi tab completion if exist
 if command -v pixi >/dev/null 2>&1; then
   eval "$(pixi completion --shell zsh)"
