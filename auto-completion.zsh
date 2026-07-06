@@ -26,8 +26,8 @@ if [ -x "$MAMBA_EXE" ]; then
 fi
 
 # Enables pixi if exist
-if [ -d "/home/developer/.pixi/bin" ]; then
-    export PATH="/home/developer/.pixi/bin:$PATH"
+if [ -d "$HOME/.pixi/bin" ]; then
+    export PATH="$HOME/.pixi/bin:$PATH"
 fi
 
 # Enables pixi tab completion if exist
