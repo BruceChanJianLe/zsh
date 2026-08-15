@@ -45,3 +45,8 @@ fi
 if command -v herdr >/dev/null 2>&1; then
   source <(oc completion zsh)
 fi
+
+# Enables github tab completion if exist
+if command -v gh >/dev/null 2>&1; then
+  source <(gh completion -s zsh)
+fi
