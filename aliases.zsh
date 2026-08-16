@@ -10,6 +10,13 @@ alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
+# nix-darwin
+alias nd='sudo darwin-rebuild switch --flake $HOME/.config/nix-darwin#$USER'
+alias ndb='darwin-rebuild build --flake $HOME/.config/nix-darwin#$USER'
+alias ndl='darwin-rebuild --list-generations'
+alias ndr='sudo darwin-rebuild rollback'
+alias ndu='nix flake update --flake $HOME/.config/nix-darwin'
+
 # Directory
 # alias -g ...='../..'
 # alias -g ....='../../..'
