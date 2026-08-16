@@ -1,15 +1,31 @@
 #!/usr/bin/env sh
 
 # Basic auto/tab complete:
+# Completion functions (see auto-completion.zsh). This must come BEFORE compinit
+[ -d "$ZDOTDIR/completions" ] && fpath=("$ZDOTDIR/completions" $fpath)
+
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
-for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
-  compinit
-  touch $ZDOTDIR/.zcompdump
-done
-compinit -C
+# Our own dump. Needed on Debian/Ubuntu, where /etc/zsh/zshrc runs compinit
+# before this file and writes $ZDOTDIR/.zcompdump without completions/ on fpath,
+# hiding ours. Harmless elsewhere (macOS has no global compinit).
+# (Alternative: skip_global_compinit=1 in ~/.zshenv, but that is outside this repo.)
+_zcompdump=$ZDOTDIR/.zcompdump-user
+
+# Rebuild if missing, >1 day old, or older than completions/.
+# Traps: glob needs an array; zsh -nt is false when the target is missing.
+_zcompdump_stale=( $_zcompdump(N.mh+24) )
+if [[ ! -f $_zcompdump ]] \
+  || (( $#_zcompdump_stale )) \
+  || [[ -d $ZDOTDIR/completions && $ZDOTDIR/completions -nt $_zcompdump ]]; then
+  compinit -d $_zcompdump
+  touch $_zcompdump
+else
+  compinit -C -d $_zcompdump
+fi
+unset _zcompdump _zcompdump_stale
 
 # Include hidden files.
 _comp_options+=(globdots)

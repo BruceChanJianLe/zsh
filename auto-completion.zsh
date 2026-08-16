@@ -30,23 +30,39 @@ if [ -d "$HOME/.pixi/bin" ]; then
     export PATH="$HOME/.pixi/bin:$PATH"
 fi
 
-# Enables pixi tab completion if exist
-if command -v pixi >/dev/null 2>&1; then
-  eval "$(pixi completion --shell zsh)"
-fi
+# ---------------------------------------------------------------------------
+# Stored tab completions only load on the first tab, refreshes every 30 days
+# ---------------------------------------------------------------------------
+COMP_DIR="${ZDOTDIR:-$HOME/.config/zsh}/completions"
+COMP_MAX_AGE_DAYS=30
 
-# Enables openshift(oc) tab completion if exist
+_comp_refresh() {
+  local name=$1; shift
+  # not installed here - skip
+  command -v "$name" >/dev/null 2>&1 || return 0
+
+  [ -d "$COMP_DIR" ] || mkdir -p "$COMP_DIR" || return 0
+  local file="$COMP_DIR/_$name"
+
+  # Regenerate only when missing/empty, or older than COMP_MAX_AGE_DAYS.
+  local -a stale=( ${file}(N.md+${COMP_MAX_AGE_DAYS}) )
+  [[ -s $file && -z $stale ]] && return 0
+
+  # Write via a temp file so an interrupted or failing generator can never
+  # leave a truncated completion behind.
+  if "$@" > "$file.tmp" 2>/dev/null && [ -s "$file.tmp" ]; then
+    mv "$file.tmp" "$file"
+  else
+    rm -f "$file.tmp"
+  fi
+}
+
+_comp_refresh pixi  pixi completion --shell zsh
+_comp_refresh gh    gh completion -s zsh
+_comp_refresh herdr herdr completion zsh
+
+unset -f _comp_refresh
+
 if command -v oc >/dev/null 2>&1; then
   alias occ='source <(oc completion zsh)'
-  # source <(oc completion zsh)
-fi
-
-# Enables herdr tab completion if exist
-if command -v herdr >/dev/null 2>&1; then
-  source <(oc completion zsh)
-fi
-
-# Enables github tab completion if exist
-if command -v gh >/dev/null 2>&1; then
-  source <(gh completion -s zsh)
 fi
