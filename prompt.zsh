@@ -35,7 +35,8 @@ if [ -x "$(command -v lsb_release)" ]; then
   fi
 elif [ -x "$(command -v sw_vers)" ]; then
   macos_version=${$(sw_vers -productVersion)%%.*}
-  PROMPT+="%{$fg[cyan]%}M"$macos_version
+  PROMPT+="%{$fg[cyan]%}"
+  # PROMPT+="%{$fg[cyan]%}M"$macos_version
 fi
 
 # Show redhat if in openshift
