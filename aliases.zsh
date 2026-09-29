@@ -16,6 +16,7 @@ alias ndb='darwin-rebuild build --flake $HOME/.config/nix-darwin#$USER'
 alias ndl='sudo darwin-rebuild --list-generations'
 alias ndr='sudo darwin-rebuild rollback'
 alias ndu='nix flake update --flake $HOME/.config/nix-darwin'
+alias nix-clean='sudo nix-collect-garbage -d'
 
 # Directory
 # alias -g ...='../..'
